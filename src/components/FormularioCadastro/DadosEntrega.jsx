@@ -13,7 +13,7 @@ function DadosEntrega () {
             />
             <TextField 
                 id="endereco"
-                label="Endereco"
+                label="Endereço"
                 type="text"
                 variant="outlined"
                 margin="normal"
