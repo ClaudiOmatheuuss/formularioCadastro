@@ -5,7 +5,7 @@ import DadosEntrega from "./DadosEntrega";
 import DadosRecebidos from "./DadosRecebidos";
 import { Step, StepLabel, Stepper } from "@mui/material";
 
-function FormularioCadastro({aoEnviar, validarCPF}) {
+function FormularioCadastro({ aoEnviar, validacoes }) {
   
   const [etapaAtual, setEtapaAtual] = useState(0)
   const [dadosColetados, setDadosColetados] = useState({})
@@ -17,9 +17,9 @@ function FormularioCadastro({aoEnviar, validarCPF}) {
   })
 
   const formularios = [
-    <DadosUsuario aoEnviar={coletaDados} />,
-    <DadosPessoais aoEnviar={coletaDados} validarCPF={validarCPF} />,
-    <DadosEntrega aoEnviar={coletaDados} />,
+    <DadosUsuario aoEnviar={coletaDados} validacoes={validacoes} />,
+    <DadosPessoais aoEnviar={coletaDados} validacoes={validacoes} />,
+    <DadosEntrega aoEnviar={coletaDados} validacoes={validacoes} />,
     <DadosRecebidos />
   ]
   

@@ -3,7 +3,7 @@ import React from "react";
 
 function DadosRecebidos () {
     return (
-        <Typography component={h3}>Obrigado pelo cadastro!</Typography>
+        <Typography variant="h4" align="center">Obrigado pelo cadastro!</Typography>
     )
 }
 

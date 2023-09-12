@@ -1,15 +1,30 @@
 import React, { useState } from "react"
 import { TextField, Button, Switch, FormControlLabel } from "@mui/material"
 
-function DadosPessoais({aoEnviar, validarCPF}) {
+function DadosPessoais({ aoEnviar, validacoes }) {
 
   const [nome, setNome] = useState("")
   const [sobrenome, setSobrenome] = useState("")
   const [cpf, setCpf] = useState("")
   const [promocoes, setPromocoes] = useState(true)
   const [novidades, setNovidades] = useState(false)
-  const [erros, setErros] = useState({cpf:{valido:true, texto:""}})
+  const [erros, setErros] = useState({
+    nome:{valido:true, texto:""}, 
+    sobrenome:{valido:true, texto:""}, 
+    cpf:{valido:true, texto:""}
+  })
   
+  function validarCampos (event) {
+
+    console.log(event.target)
+    const {name, value} = event.target
+    const novoEstado = {...erros}
+    novoEstado[name] = validacoes[name](value)
+    setErros(novoEstado)
+    console.log(novoEstado)
+  }
+
+
   return (
     <form
       onSubmit={(event) => {
@@ -22,40 +37,49 @@ function DadosPessoais({aoEnviar, validarCPF}) {
         onChange={(event) => {
           setNome(event.target.value)
         }}
+        onBlur={(event) => validarCampos(event)}
+        error={!erros.nome.valido}
+        helperText={erros.nome.texto}
         id="nome"
         label="Nome"
+        name="nome"
         variant="outlined"
         margin="normal"
         fullWidth
+        required
       />
       <TextField
         value={sobrenome}
         onChange={(event) => {
           setSobrenome(event.target.value)
         }}
+        onBlur={(event) => validarCampos(event)}
+        error={!erros.sobrenome.valido}
+        helperText={erros.sobrenome.texto}
         id="sobrenome"
+        name="sobrenome"
         label="Sobrenome"
         variant="outlined"
         margin="normal"
         fullWidth
+        required
       />
       <TextField
         value={cpf}
         onChange={(event) => {
           setCpf(event.target.value)
         }}
-
-        onBlur={(event)=>{
-          const ehValido = validarCPF(cpf)
-          setErros({cpf:ehValido})
-        }}
+        onBlur={(event) => validarCampos(event)}
         error={!erros.cpf.valido}
         helperText={erros.cpf.texto}
         id="CPF"
         label="CPF"
         variant="outlined"
+        name="cpf"
         margin="normal"
         fullWidth
+        type="text"
+        required
       />
 
       <FormControlLabel
