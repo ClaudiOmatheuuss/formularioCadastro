@@ -1,9 +1,9 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react';
 
-function DadosEntrega () {
+function DadosEntrega ({ aoEnviar }) {
     return (
-        <form>
+        <form onSubmit={aoEnviar}>
              <TextField
                 id="cep" 
                 label="CEP" 
