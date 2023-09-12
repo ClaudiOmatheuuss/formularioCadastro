@@ -4,6 +4,7 @@ import FormularioCadastro from "./components/FormularioCadastro/FormularioCadast
 import 'fontsource-roboto';
 
 import {Container, Typography } from "@mui/material"
+
 class App extends Component {
   render() {
     return (
@@ -22,9 +23,22 @@ function aoEnviarForm(dados){
 function validarCPF(cpf){
   if(cpf.length !== 11){
     return {valido:false, texto:"CPF deve ter 11 digitos."}
-  }else{
+  } else if (numerosRepetidos(cpf)) {
+    return {valido: false, texto:"CPF não pode ter todos os números repetidos."}
+  } else{
     return {valido:true, texto:""}
   }
+
+  function numerosRepetidos ( cpf ) {
+    const primeiroDigito = cpf[0]
+    for (let i = 1; i < cpf.length; i++) {
+      if ( cpf[i] !== primeiroDigito ){
+        return false
+      }
+      return true
+    }
+  }
 }
+
 
 export default App;

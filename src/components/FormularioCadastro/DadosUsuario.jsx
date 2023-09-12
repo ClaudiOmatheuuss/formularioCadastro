@@ -16,7 +16,7 @@ function DadosUsuario({ aoEnviar }) {
                     setEmail(event.target.value)
                 }}
                 id="email"
-                label="email"
+                label="Email"
                 type="email"
                 variant="outlined"
                 margin="normal"
@@ -29,7 +29,7 @@ function DadosUsuario({ aoEnviar }) {
                     setSenha(event.target.value)
                 }}
                 id="senha"
-                label="senha"
+                label="Senha"
                 type="password"
                 variant="outlined"
                 margin="normal"
