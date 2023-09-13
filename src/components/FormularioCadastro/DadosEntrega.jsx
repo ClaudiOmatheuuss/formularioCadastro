@@ -24,6 +24,7 @@ function DadosEntrega({ aoEnviar }) {
                 type="number"
                 variant="outlined"
                 margin="normal"
+                required
             />
             <TextField
                 value={endereco}
@@ -36,6 +37,7 @@ function DadosEntrega({ aoEnviar }) {
                 variant="outlined"
                 margin="normal"
                 fullWidth
+                required
             />
             <TextField
                 value={numero}
@@ -47,6 +49,7 @@ function DadosEntrega({ aoEnviar }) {
                 type="number"
                 variant="outlined"
                 margin="normal"
+                required
             />
             <TextField
                 value={estado}
@@ -58,6 +61,7 @@ function DadosEntrega({ aoEnviar }) {
                 type="text"
                 variant="outlined"
                 margin="normal"
+                required
             />
             <TextField
                 value={cidade}
@@ -69,6 +73,7 @@ function DadosEntrega({ aoEnviar }) {
                 type="text"
                 variant="outlined"
                 margin="normal"
+                required
             />
 
             <Button type="submit" variant="contained" color="primary" fullWidth >

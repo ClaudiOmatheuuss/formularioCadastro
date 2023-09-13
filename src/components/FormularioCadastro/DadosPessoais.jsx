@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import { TextField, Button, Switch, FormControlLabel } from "@mui/material"
 
+import envioAutorizado from '../../models/envioAutorizado'
+import validarCampos from "../../models/validarCampos"
+
 function DadosPessoais({ aoEnviar, validacoes }) {
 
   const [nome, setNome] = useState("")
@@ -9,19 +12,17 @@ function DadosPessoais({ aoEnviar, validacoes }) {
   const [promocoes, setPromocoes] = useState(true)
   const [novidades, setNovidades] = useState(false)
   const [erros, setErros] = useState({
-    nome:{valido:true, texto:""}, 
-    sobrenome:{valido:true, texto:""}, 
-    cpf:{valido:true, texto:""}
+    nome:{valido: true, texto:""}, 
+    sobrenome:{valido: true, texto:""}, 
+    cpf:{valido: true, texto:""}
   })
   
   function validarCampos (event) {
 
-    console.log(event.target)
     const {name, value} = event.target
     const novoEstado = {...erros}
     novoEstado[name] = validacoes[name](value)
     setErros(novoEstado)
-    console.log(novoEstado)
   }
 
 
@@ -29,7 +30,9 @@ function DadosPessoais({ aoEnviar, validacoes }) {
     <form
       onSubmit={(event) => {
         event.preventDefault()
-        aoEnviar({nome, sobrenome, cpf, novidades, promocoes})
+        if(envioAutorizado(erros)){
+          aoEnviar({nome, sobrenome, cpf, novidades, promocoes})
+        }
       }}
     >
       <TextField
@@ -111,7 +114,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
       />
 
       <Button type="submit" variant="contained" color="primary" fullWidth>
-        Cadastrar
+        Próximo
       </Button>
     </form>
   )

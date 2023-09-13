@@ -1,28 +1,20 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 
+import envioAutorizado from "../../models/envioAutorizado"
+import validarCampos from "../../models/validarCampos"
+
 function DadosUsuario({ aoEnviar, validacoes }) {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
-    const [erros, setErros] = useState({
-        senha:{valido:true, texto:""}, 
-      })
-
-      function validarCampos (event) {
-    
-        console.log(event.target)
-        const {name, value} = event.target
-        const novoEstado = {...erros}
-        novoEstado[name] = validacoes[name](value)
-        setErros(novoEstado)
-        console.log(novoEstado)
-      }
-    
+    const [erros, setErros] = useState({ senha:{valido:true, texto:""} })
     
     return (
         <form onSubmit={(event) => {
             event.preventDefault()
-            aoEnviar({ email, senha })
+            if (envioAutorizado(erros)){
+                aoEnviar({ email, senha })
+            }
         }}>
             <TextField
                 value={email}
@@ -43,7 +35,7 @@ function DadosUsuario({ aoEnviar, validacoes }) {
                 onChange={(event) => {
                     setSenha(event.target.value)
                 }}
-                onBlur={(event) => validarCampos(event)}
+                onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
                 error={!erros.senha.valido}
                 helperText={erros.senha.texto}
                 id="senha"
@@ -57,7 +49,7 @@ function DadosUsuario({ aoEnviar, validacoes }) {
             />
 
             <Button type="submit" variant="contained" color="primary" >
-                Cadastrar
+                Próximo
             </Button>
         </form>
     )
