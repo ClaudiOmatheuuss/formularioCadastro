@@ -5,6 +5,8 @@ import DadosEntrega from "./DadosEntrega";
 import DadosRecebidos from "./DadosRecebidos";
 import { Step, StepLabel, Stepper } from "@mui/material";
 
+import styles from './Formulario.module.css'
+
 function FormularioCadastro({ aoEnviar, validacoes }) {
   
   const [etapaAtual, setEtapaAtual] = useState(0)
@@ -34,7 +36,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
 
   return (
     <>
-      <Stepper activeStep={etapaAtual}>
+      <Stepper className={styles.stepper} activeStep={etapaAtual}>
         <Step><StepLabel>Login</StepLabel></Step>
         <Step><StepLabel>Pessoal</StepLabel></Step>
         <Step><StepLabel>Entrega</StepLabel></Step>

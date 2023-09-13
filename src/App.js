@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
 import 'fontsource-roboto';
-import {Container, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
+import styles from './components/FormularioCadastro/Formulario.module.css'
 
 import { validarSenha, validarNome, validarSobrenome, validarCPF } from './models/cadastro'
 
 class App extends Component {
   render() {
     return (
-      <Container component="article" maxWidth="sm">
-        <Typography variant="h3" component="h1" align="center" >Formulário de cadastro</Typography>
+      <div className={styles.container}>
+          <Typography variant="h3" align="center" className={styles.titulo}>Formulário de cadastro</Typography>
         <FormularioCadastro 
           aoEnviar={aoEnviarForm} 
           validacoes={{
@@ -20,7 +21,7 @@ class App extends Component {
             cpf:validarCPF,
           }}
         />
-      </Container>
+      </div>
     );
   }
 }

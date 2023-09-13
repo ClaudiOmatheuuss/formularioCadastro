@@ -4,6 +4,8 @@ import { TextField, Button, Switch, FormControlLabel } from "@mui/material"
 import envioAutorizado from '../../models/envioAutorizado'
 import validarCampos from "../../models/validarCampos"
 
+import styles from './Formulario.module.css'
+
 function DadosPessoais({ aoEnviar, validacoes }) {
 
   const [nome, setNome] = useState("")
@@ -16,18 +18,9 @@ function DadosPessoais({ aoEnviar, validacoes }) {
     sobrenome:{valido: true, texto:""}, 
     cpf:{valido: true, texto:""}
   })
-  
-  function validarCampos (event) {
-
-    const {name, value} = event.target
-    const novoEstado = {...erros}
-    novoEstado[name] = validacoes[name](value)
-    setErros(novoEstado)
-  }
-
 
   return (
-    <form
+    <form className={styles.formconteudo}
       onSubmit={(event) => {
         event.preventDefault()
         if(envioAutorizado(erros)){
@@ -40,7 +33,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setNome(event.target.value)
         }}
-        onBlur={(event) => validarCampos(event)}
+        onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
         error={!erros.nome.valido}
         helperText={erros.nome.texto}
         id="nome"
@@ -56,7 +49,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setSobrenome(event.target.value)
         }}
-        onBlur={(event) => validarCampos(event)}
+        onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
         error={!erros.sobrenome.valido}
         helperText={erros.sobrenome.texto}
         id="sobrenome"
@@ -72,7 +65,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setCpf(event.target.value)
         }}
-        onBlur={(event) => validarCampos(event)}
+        onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
         error={!erros.cpf.valido}
         helperText={erros.cpf.texto}
         id="CPF"
@@ -113,7 +106,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         }
       />
 
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      <Button type="submit" size="large" variant="contained" color="primary" fullWidth>
         Próximo
       </Button>
     </form>

@@ -1,6 +1,9 @@
 import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
+
+import styles from './Formulario.module.css'
+
 function DadosEntrega({ aoEnviar }) {
 
     const [cep, setCep] = useState("")
@@ -10,10 +13,11 @@ function DadosEntrega({ aoEnviar }) {
     const [cidade, setCidade] = useState("")
 
     return (
-        <form onSubmit={(event) => {
-            event.preventDefault()
-            aoEnviar({ cep, endereco, numero, estado, cidade })
-        }}>
+        <form className={styles.formconteudo}
+            onSubmit={(event) => {
+                event.preventDefault()
+                aoEnviar({ cep, endereco, numero, estado, cidade })
+            }}>
             <TextField
                 value={cep}
                 onChange={(event) => {
@@ -76,7 +80,7 @@ function DadosEntrega({ aoEnviar }) {
                 required
             />
 
-            <Button type="submit" variant="contained" color="primary" fullWidth >
+            <Button type="submit" size="large" variant="contained" color="primary" fullWidth >
                 Finalizar cadastro
             </Button>
         </form>
