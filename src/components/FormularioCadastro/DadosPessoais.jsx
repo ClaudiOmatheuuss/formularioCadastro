@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { TextField, Button, Switch, FormControlLabel } from "@mui/material"
 
+import ValidacoesCadastro from '../../contexts/ValidacoesCadastro'
 import envioAutorizado from '../../models/envioAutorizado'
 import validarCampos from "../../models/validarCampos"
 
@@ -13,11 +14,14 @@ function DadosPessoais({ aoEnviar, validacoes }) {
   const [cpf, setCpf] = useState("")
   const [promocoes, setPromocoes] = useState(true)
   const [novidades, setNovidades] = useState(false)
+  const validacoes = useContext(ValidacoesCadastro)
+  
   const [erros, setErros] = useState({
     nome:{valido: true, texto:""}, 
     sobrenome:{valido: true, texto:""}, 
     cpf:{valido: true, texto:""}
   })
+
 
   return (
     <form className={styles.formconteudo}

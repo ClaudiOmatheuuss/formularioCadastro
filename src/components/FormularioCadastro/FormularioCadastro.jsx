@@ -7,26 +7,26 @@ import { Step, StepLabel, Stepper } from "@mui/material";
 
 import styles from './Formulario.module.css'
 
-function FormularioCadastro({ aoEnviar, validacoes }) {
-  
+function FormularioCadastro({ aoEnviar }) {
+
   const [etapaAtual, setEtapaAtual] = useState(0)
   const [dadosColetados, setDadosColetados] = useState({})
 
   useEffect(() => {
-    if (etapaAtual === formularios.length-1){
+    if (etapaAtual === formularios.length - 1) {
       aoEnviar(dadosColetados)
     }
   })
 
   const formularios = [
-    <DadosUsuario aoEnviar={coletaDados} validacoes={validacoes} />,
-    <DadosPessoais aoEnviar={coletaDados} validacoes={validacoes} />,
-    <DadosEntrega aoEnviar={coletaDados} validacoes={validacoes} />,
+    <DadosUsuario aoEnviar={coletaDados} />,
+    <DadosPessoais aoEnviar={coletaDados} />,
+    <DadosEntrega aoEnviar={coletaDados} />,
     <DadosRecebidos />
   ]
-  
-  function coletaDados (dados) {
-    setDadosColetados({...dadosColetados, ...dados })
+
+  function coletaDados(dados) {
+    setDadosColetados({ ...dadosColetados, ...dados })
     proximo()
   }
 
@@ -42,7 +42,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
         <Step><StepLabel>Entrega</StepLabel></Step>
         <Step><StepLabel>Fim!</StepLabel></Step>
       </Stepper>
-      { formularios[etapaAtual] }
+      {formularios[etapaAtual]}
     </>
   );
 }
