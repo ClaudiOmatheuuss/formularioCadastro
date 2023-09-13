@@ -5,7 +5,7 @@ import ValidacoesCadastro from '../../contexts/ValidacoesCadastro'
 import styles from './Formulario.module.css'
 import useErros from '../../hooks/useErros'
 
-function DadosPessoais({ aoEnviar }) {
+function DadosPessoais({ aoEnviar, formAnterior }) {
 
   const [nome, setNome] = useState("")
   const [sobrenome, setSobrenome] = useState("")
@@ -101,6 +101,10 @@ function DadosPessoais({ aoEnviar }) {
           />
         }
       />
+
+      <Button size="medium" variant="contained" color="inherit" onClick={formAnterior} fullWidth >
+        Voltar
+      </Button>
 
       <Button type="submit" size="large" variant="contained" color="primary" fullWidth>
         Próximo

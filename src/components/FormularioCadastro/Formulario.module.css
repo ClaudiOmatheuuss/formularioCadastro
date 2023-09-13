@@ -25,6 +25,14 @@
 }
 
 .formconteudo{
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     position: relative;
+}
+
+@media screen and (max-width: 420px) {
+    .formconteudo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }

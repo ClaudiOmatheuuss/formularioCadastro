@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import styles from './Formulario.module.css'
 
-function DadosEntrega({ aoEnviar }) {
+function DadosEntrega({ aoEnviar, formAnterior }) {
 
     const [cep, setCep] = useState("")
     const [endereco, setEndereco] = useState("")
@@ -79,6 +79,10 @@ function DadosEntrega({ aoEnviar }) {
                 margin="normal"
                 required
             />
+
+            <Button size="medium" variant="contained" fullWidth color="inherit" onClick={formAnterior} >
+                Voltar
+            </Button>
 
             <Button type="submit" size="large" variant="contained" color="primary" fullWidth >
                 Finalizar cadastro

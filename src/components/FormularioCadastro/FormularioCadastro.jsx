@@ -20,14 +20,18 @@ function FormularioCadastro({ aoEnviar }) {
 
   const formularios = [
     <DadosUsuario aoEnviar={coletaDados} />,
-    <DadosPessoais aoEnviar={coletaDados} />,
-    <DadosEntrega aoEnviar={coletaDados} />,
+    <DadosPessoais aoEnviar={coletaDados} formAnterior={formAnterior} />,
+    <DadosEntrega aoEnviar={coletaDados} formAnterior={formAnterior} />,
     <DadosRecebidos />
   ]
 
   function coletaDados(dados) {
     setDadosColetados({ ...dadosColetados, ...dados })
     proximo()
+  }
+
+  function formAnterior() {
+    setEtapaAtual(etapaAtual - 1)
   }
 
   function proximo() {
