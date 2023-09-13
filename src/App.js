@@ -13,6 +13,7 @@ class App extends Component {
     return (
       <div className={styles.container}>
         <Typography variant="h3" align="center" className={styles.titulo}>Formulário de cadastro</Typography>
+        
         <ValidacoesCadastro.Provider value={{ senha: validarSenha, nome: validarNome, sobrenome: validarSobrenome, cpf: validarCPF}}>
           <FormularioCadastro aoEnviar={aoEnviarForm} />
         </ValidacoesCadastro.Provider>

@@ -37,10 +37,18 @@ function FormularioCadastro({ aoEnviar }) {
   return (
     <>
       <Stepper className={styles.stepper} activeStep={etapaAtual}>
-        <Step><StepLabel>Login</StepLabel></Step>
-        <Step><StepLabel>Pessoal</StepLabel></Step>
-        <Step><StepLabel>Entrega</StepLabel></Step>
-        <Step><StepLabel>Fim!</StepLabel></Step>
+        <Step>
+          <StepLabel>Login</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Pessoal</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Entrega</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Fim!</StepLabel>
+        </Step>
       </Stepper>
       {formularios[etapaAtual]}
     </>

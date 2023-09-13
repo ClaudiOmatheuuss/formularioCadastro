@@ -2,12 +2,10 @@ import React, { useState, useContext } from "react"
 import { TextField, Button, Switch, FormControlLabel } from "@mui/material"
 
 import ValidacoesCadastro from '../../contexts/ValidacoesCadastro'
-import envioAutorizado from '../../models/envioAutorizado'
-import validarCampos from "../../models/validarCampos"
-
 import styles from './Formulario.module.css'
+import useErros from '../../hooks/useErros'
 
-function DadosPessoais({ aoEnviar, validacoes }) {
+function DadosPessoais({ aoEnviar }) {
 
   const [nome, setNome] = useState("")
   const [sobrenome, setSobrenome] = useState("")
@@ -15,13 +13,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
   const [promocoes, setPromocoes] = useState(true)
   const [novidades, setNovidades] = useState(false)
   const validacoes = useContext(ValidacoesCadastro)
-  
-  const [erros, setErros] = useState({
-    nome:{valido: true, texto:""}, 
-    sobrenome:{valido: true, texto:""}, 
-    cpf:{valido: true, texto:""}
-  })
-
+  const [erros, validarCampos, envioAutorizado] = useErros(validacoes)
 
   return (
     <form className={styles.formconteudo}
@@ -37,7 +29,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setNome(event.target.value)
         }}
-        onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
+        onBlur={validarCampos}
         error={!erros.nome.valido}
         helperText={erros.nome.texto}
         id="nome"
@@ -53,7 +45,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setSobrenome(event.target.value)
         }}
-        onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
+        onBlur={validarCampos}
         error={!erros.sobrenome.valido}
         helperText={erros.sobrenome.texto}
         id="sobrenome"
@@ -69,7 +61,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setCpf(event.target.value)
         }}
-        onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
+        onBlur={validarCampos}
         error={!erros.cpf.valido}
         helperText={erros.cpf.texto}
         id="CPF"

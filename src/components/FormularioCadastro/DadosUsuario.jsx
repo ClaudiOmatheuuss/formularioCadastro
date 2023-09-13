@@ -1,19 +1,16 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState, useContext } from "react";
 import ValidacoesCadastro from '../../contexts/ValidacoesCadastro'
-import envioAutorizado from "../../models/envioAutorizado"
-import validarCampos from "../../models/validarCampos"
+import useErros from '../../hooks/useErros'
 
 import styles from './Formulario.module.css'
 
-function DadosUsuario({ aoEnviar, validacoes }) {
+function DadosUsuario({ aoEnviar }) {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
-    const [erros, setErros] = useState({
-        senha: { valido: true, texto: "" }
-    })
-
     const validacoes = useContext(ValidacoesCadastro)
+    const [erros, validarCampos, envioAutorizado] = useErros(validacoes)
+
     return (
         <form className={styles.formconteudo}
             onSubmit={(event) => {
@@ -41,7 +38,7 @@ function DadosUsuario({ aoEnviar, validacoes }) {
                 onChange={(event) => {
                     setSenha(event.target.value)
                 }}
-                onBlur={(event) => validarCampos(event, erros, validacoes, setErros)}
+                onBlur={validarCampos}
                 error={!erros.senha.valido}
                 helperText={erros.senha.texto}
                 id="senha"
