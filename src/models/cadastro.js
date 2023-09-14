@@ -120,22 +120,4 @@ function validarCPF(cpf){
   }
 }
 
-async function validarCEP(cep, logradouro, cidade, estado){
-  try {
-      let consultaCEP = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      let consultaCEPConvertido = await consultaCEP.json()
-      if (!consultaCEPConvertido){
-        return {valido:false, texto:"CEP não existe"}
-      }
-
-      logradouro.value = consultaCEPConvertido.logradouro
-      cidade.value = consultaCEPConvertido.localidade
-      estado.value = consultaCEPConvertido.uf
-
-      return {valido:true, texto:""}, logradouro, cidade, estado
-  } catch(erro) {
-      return {valido:false, texto:"CEP não existe"}
-  }
-}
-
-export { validarSenha, validarNome, validarSobrenome, validarCPF, validarCEP }
+export { validarSenha, validarNome, validarSobrenome, validarCPF }
