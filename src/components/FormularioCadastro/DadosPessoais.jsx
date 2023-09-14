@@ -65,7 +65,7 @@ function DadosPessoais({ aoEnviar, formAnterior }) {
         error={!erros.cpf.valido}
         helperText={erros.cpf.texto}
         id="CPF"
-        label="CPF"
+        label="CPF(apenas numeros)"
         variant="outlined"
         name="cpf"
         margin="normal"

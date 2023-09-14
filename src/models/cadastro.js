@@ -27,7 +27,9 @@ function validarSobrenome ( sobrenome ) {
 
 function validarCPF(cpf){
 
-  if(cpf.length !== 11){
+  if(caracteresEspeciais(cpf)){
+  return {valido: false, texto:"CPF não pode ter caracteres especiais, apenas números."} 
+  } else if(cpf.length !== 11){
     return {valido:false, texto:"CPF deve ter 11 dígitos."}
   } else if (numerosRepetidos(cpf)) {
     return {valido: false, texto:"CPF não pode ter todos os números repetidos."}
@@ -83,6 +85,19 @@ function validarCPF(cpf){
   ]
 
     return numerosRepetidos.includes(cpf) 
+  }
+  function caracteresEspeciais(cpf) {
+    const caracteresEspeciais = ["!", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "-", "_", ",", ".", "=", "+", "`", "[", "{", "]", "}", "<", ">", ":", ";", "/", "?", "|", "'", '"']
+
+    let tamanhoCpf = cpf.length
+
+    for (let i = 0; i < tamanhoCpf; i++) {
+      if (caracteresEspeciais.includes(cpf[i])) {
+        return true
+      }
+    }
+
+    return false
   }
   function validaPrimeiroDigito(cpf){
       let soma = 0
