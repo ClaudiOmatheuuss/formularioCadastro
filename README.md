@@ -14,9 +14,7 @@
 validações padrão do html5 para todos os campos: Email, senha, nome, sobrenome, cpf ,Cep, Endereço, Numero, Estado, Cidade.
 
 Validações extra:
-          1.  senha: a senha deve conter entre 4 e 72 caracteres;  
-          2.  Nome, sobrenome: devem conter no mínimo 3 caracteres; 
-          3.  CPF: algoritmos de validação de primeiro e segundo digito, deve conter exatamente 11 digitos, não é permitido todos os caracteres iguais nem caracteres especiais.
+          1.  senha: a senha deve conter entre 4 e 72 caracteres;                    2.  Nome, sobrenome: devem conter no mínimo 3 caracteres;                      3.  CPF: algoritmos de validação de primeiro e segundo digito, deve conter exatamente 11 digitos, validação de caracteres iguais e caracteres especiais.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
                                         Tecnologias usadas 
