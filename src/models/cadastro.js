@@ -28,7 +28,7 @@ function validarSobrenome ( sobrenome ) {
 function validarCPF(cpf){
 
   if(caracteresEspeciais(cpf)){
-  return {valido: false, texto:"CPF não pode ter caracteres especiais, apenas números."} 
+  return {valido: false, texto:"Ops! Nada de caracteres especiais aqui. Apenas números."} 
   } else if(cpf.length !== 11){
     return {valido:false, texto:"CPF deve ter 11 dígitos."}
   } else if (numerosRepetidos(cpf)) {
